@@ -32,7 +32,7 @@ services:
       - /sys:/host/sys:ro
       - /:/host:ro
     healthcheck:
-      test: ["CMD", "curl", "http://localhost:9100/metrics"]
+      test: ["CMD", "curl", "http://localhost:9100"]
       interval: 30s
       timeout: 5s
       retries: 3
