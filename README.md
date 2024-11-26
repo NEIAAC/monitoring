@@ -52,11 +52,3 @@
   ```
 
 - To update any of the services simply bump the version number in the `image` field and run the `docker compose up --force-recreate` command again, but beware of breaking changes! You should look at the update notes of each service to see if there are any migration steps required when upgrading.
-
-## Notes
-
-- The Loki server needs a port open to the host so the Docker driver can send logs to it.
-
-- For Grafana the port obviously also needs to be open on the host so we can serve the UI using a reverse proxy.
-
-- Promtheus and Node Exporter, on the other hand, are only exposed to services in the docker-compose since they only need to pass data to the grafana service, and not the host.
