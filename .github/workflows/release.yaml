@@ -21,7 +21,3 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
-  deploy:
-    needs: [metadata]
-    if: ${{ needs.metadata.outputs.release-created}}
-    uses: ./.github/workflows/deploy.yaml
