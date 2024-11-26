@@ -22,10 +22,12 @@ services:
     env_file: .env
     expose:
       - 9100
+    command:
+      - "--path.rootfs=/host"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
-      - /:/rootfs:ro
+      - /:/host:ro
   prometheus:
     image: prom/prometheus:v3.0.0
     container_name: prometheus
@@ -50,7 +52,8 @@ services:
       - ${GRAFANA_PORT}:3000
     volumes:
       - ./grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
-      - ./grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./grafana-metrics-dashboard.yaml:/etc/grafana/provisioning/dashboards/metrics.yaml
+      - ./grafana-logs-dashboard.yaml:/etc/grafana/provisioning/dashboards/logs.yaml
       - ./grafana-dashboard.json:/var/lib/grafana/dashboards/dashboard.json
       - grafana-data:/var/lib/grafana
 
