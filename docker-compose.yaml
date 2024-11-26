@@ -1,0 +1,60 @@
+# https://docs.docker.com/reference/compose-file/version-and-name
+# https://docs.docker.com/reference/compose-file/services
+# https://docs.docker.com/reference/compose-file/volumes
+
+name: monitoring
+
+services:
+  loki:
+    image: grafana/loki:3.3.0
+    container_name: loki
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${LOKI_PORT}:3100
+    volumes:
+      - ./loki.yaml:/etc/loki/loki.yaml
+      - loki-data:/loki
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    container_name: node-exporter
+    restart: unless-stopped
+    env_file: .env
+    expose:
+      - 9100
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+  prometheus:
+    image: prom/prometheus:v3.0.0
+    container_name: prometheus
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - node-exporter
+    expose:
+      - 9090
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+  grafana:
+    image: grafana/grafana-oss:11.3.1
+    container_name: grafana
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - loki
+      - prometheus
+    ports:
+      - ${GRAFANA_PORT}:3000
+    volumes:
+      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./grafana-dashboard.json:/var/lib/grafana/dashboards/dashboard.json
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  loki-data:
+  prometheus-data:
+  grafana-data:
