@@ -1,0 +1,10 @@
+apiVersion: 1
+
+contactPoints:
+  name: grafana-default-email
+  receivers:
+    - uid: grafana-default-email
+      type: email
+      settings:
+        addresses: ${GRAFANA_ALERT_RECEIVER}
+        singleEmail: true
