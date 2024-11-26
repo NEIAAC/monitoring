@@ -1,79 +1,124 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_LOKI",
-      "label": "Loki",
-      "description": "Loki data source",
-      "type": "datasource",
-      "pluginId": "loki",
-      "pluginName": "Loki"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.4.3"
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "2.7.1"
-    }
-  ],
-  "templating": {
+  "annotations": {
     "list": [
       {
-        "name": "container_name",
-        "type": "query",
-        "datasource": "${DS_LOKI}",
-        "query": "label_values({job=\"docker\"}, container_name)",
-        "refresh": 2,
-        "hide": 0,
-        "label": "Container Name",
-        "multi": true,
-        "includeAll": true,
-        "allValue": ".*"
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
       }
     ]
   },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "type": "logs",
-      "title": "Logs for $container_name",
       "datasource": {
         "type": "loki",
-        "uid": "DS_LOKI"
+        "uid": "${datasource}"
       },
-      "targets": [
-        {
-          "expr": "{container_name=\"$container_name\"}",
-          "refId": "A"
-        }
-      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
-        "h": 9,
+        "h": 15,
         "w": 24,
         "x": 0,
         "y": 0
       },
+      "id": 1,
       "options": {
         "showLabels": true,
         "showTime": true,
         "wrapLogMessage": true
       },
       "repeat": "container_name",
-      "repeatDirection": "h"
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${datasource}"
+          },
+          "expr": "{container_name=~\"$container_name.+\"}",
+          "refId": "A"
+        }
+      ],
+      "title": "$container_name",
+      "type": "logs"
     }
   ],
-  "title": "Loki Docker Logs by Container",
-  "editable": true
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 40,
+  "tags": [
+    "containers"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${datasource}",
+        "includeAll": true,
+        "label": "Container",
+        "multi": true,
+        "name": "container_name",
+        "options": [],
+        "query": "label_values({job=\"docker\"}, container_name)",
+        "refresh": 2,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "Loki",
+          "value": "P8E80F9AEF21F6940"
+        },
+        "label": "Datasource",
+        "name": "datasource",
+        "options": [],
+        "query": "loki",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "baseFilters": [],
+        "datasource": {
+          "type": "loki",
+          "uid": "${datasource}"
+        },
+        "filters": [],
+        "name": "Filters",
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Logs",
+  "weekStart": ""
 }
