@@ -6,5 +6,5 @@ contactPoints:
     - uid: grafana-default-email
       type: email
       settings:
-        addresses: ${GRAFANA_ALERT_RECEIVER}
+        addresses: ${GRAFANA_ALERT_RECEIVERS}
         singleEmail: true
