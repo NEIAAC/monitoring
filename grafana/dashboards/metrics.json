@@ -23502,7 +23502,7 @@
   "refresh": "1h",
   "schemaVersion": 40,
   "tags": [
-    "server"
+    "host"
   ],
   "templating": {
     "list": [

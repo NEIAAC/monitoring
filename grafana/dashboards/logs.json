@@ -94,7 +94,8 @@
         },
         "datasource": "Loki",
         "includeAll": true,
-        "label": "Container",
+        "label": "Containers",
+        "multi": true,
         "name": "container_name",
         "options": [],
         "query": "label_values(container_name)",
@@ -106,7 +107,7 @@
           "text": "",
           "value": ""
         },
-        "label": "Search Query",
+        "label": "Search",
         "name": "search_query",
         "type": "textbox",
         "hide": 0,
