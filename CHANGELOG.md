@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/NEIAAC/monitoring/compare/v1.0.0...v1.0.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* improve label names ([cc5cfc4](https://github.com/NEIAAC/monitoring/commit/cc5cfc41a4ae9228125c29a9154e04e448653112))
+
 ## 1.0.0 (2024-11-26)
 
 
