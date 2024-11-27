@@ -63,6 +63,8 @@ We try to maintain the simplity of the configuration as much as possible seeing 
   docker compose up --force-recreate
   ```
 
+- Access Grafana at the port you set in the `.env` file, the default login is  `admin / admin`, which you will then be prompted to forcibly change.
+
 ## Notes 📝
 
 - To update the [grafana/loki-docker-driver](https://hub.docker.com/r/grafana/loki-docker-driver) driver plugin:
