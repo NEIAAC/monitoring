@@ -23507,7 +23507,10 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "text": "Prometheus",
+          "value": "prometheus-source"
+        },
         "includeAll": false,
         "label": "Datasource",
         "name": "datasource",
@@ -23584,7 +23587,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Metrics",
-  "uid": "rYdddlPWk",
   "version": 5,
+  "uid": "metrics-dashboard",
   "weekStart": ""
 }
