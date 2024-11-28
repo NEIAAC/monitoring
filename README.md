@@ -20,7 +20,7 @@ We try to maintain the simplity of the configuration as much as possible seeing 
 
 - Clone the repository and open a terminal **inside** it.
 
-- Create a `.env` file inside the `backend` directory based on the `.env.example` file.
+- Create a `.env` file based on the `.env.example` file.
 
 - Install the [grafana/loki-docker-driver](https://hub.docker.com/r/grafana/loki-docker-driver) plugin:
 
