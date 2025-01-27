@@ -3,7 +3,7 @@ name: monitoring
 services:
   loki:
     image: grafana/loki:3.3.0
-    pull_policy: always
+    pull_policy: if_not_present
     container_name: loki
     restart: unless-stopped
     env_file: .env
@@ -21,7 +21,7 @@ services:
 
   node-exporter:
     image: prom/node-exporter:v1.8.2
-    pull_policy: always
+    pull_policy: if_not_present
     container_name: node-exporter
     restart: unless-stopped
     env_file: .env
@@ -42,7 +42,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v3.0.0
-    pull_policy: always
+    pull_policy: if_not_present
     container_name: prometheus
     restart: unless-stopped
     env_file: .env
@@ -63,7 +63,7 @@ services:
 
   grafana:
     image: grafana/grafana-oss:11.3.1
-    pull_policy: always
+    pull_policy: if_not_present
     container_name: grafana
     restart: unless-stopped
     env_file: .env
