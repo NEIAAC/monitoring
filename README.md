@@ -1,5 +1,8 @@
 # Like CCTV, but for the server 📸🚨
 
+![screenshot](./.github/screenshots/first.png)
+![screenshot](./.github/screenshots/second.png)
+
 This repository contains a base **Grafana** setup that uses **Loki** and **Prometheus** as datasources for visualization. Note that the current configuration is meant to be used on standalone _Linux_ server hosts and not in any sort of cluster node from management systems like Kubernetes or Docker Swarm.
 
 We try to maintain the simplity of the configuration as much as possible seeing as we don't have any need for orchestration level workflows and monitoring.
