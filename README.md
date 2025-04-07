@@ -16,7 +16,6 @@ We try to maintain the simplity of the configuration as much as possible seeing 
 ## Requirements 📋
 
 - **Linux**
-- Docker Engine 25.0.0+
 - Docker Compose 2.24.0+
 
 ## Usage 🚀
@@ -32,7 +31,7 @@ We try to maintain the simplity of the configuration as much as possible seeing 
   docker plugin ls
   ```
 
-- Change the default logging driver to the newly installed plugin in the respective `daemon.json` file:
+- Change the default Docker logging driver in your host to the newly installed plugin in the respective `daemon.json` file:
 
   ```shell
   nano /etc/docker/daemon.json
