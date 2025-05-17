@@ -95,9 +95,11 @@ services:
     ports:
       - ${BUGSINK_PORT}:8000
     environment:
+      SITE_TITLE: "NEI/AAC - Sentry"
       BEHIND_HTTPS_PROXY: True
       SINGLE_TEAM: True
       PORT: 8000
+      BASE_URL: ${BUGSINK_BASE_URL}
       USER_REGISTRATION: CB_ADMINS
       SECRET_KEY: ${BUGSINK_SECRET_KEY}
       CREATE_SUPERUSER: ${BUGSINK_SUPERUSER}
