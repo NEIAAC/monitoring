@@ -18,51 +18,33 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "${datasource}"
-      },
       "fieldConfig": {
         "defaults": {},
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 24,
-        "x": 0,
+        "h": 3,
+        "w": 6,
+        "x": 18,
         "y": 0
       },
-      "id": 1,
-      "maxPerRow": "2",
+      "id": 468,
       "options": {
-        "dedupStrategy": "exact",
-        "enableLogDetails": true,
-        "prettifyLogMessage": false,
-        "showCommonLabels": true,
-        "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Descending",
-        "wrapLogMessage": false
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "## Logs for containers running on the server can be found at [portainer.neiaac.com](https://portainer.neiaac.com)!",
+        "mode": "markdown"
       },
       "pluginVersion": "11.3.1",
-      "repeat": "container_name",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "${datasource}"
-          },
-          "expr": "{container_name=\"${container_name}\"} |~ \"${search_query}\"",
-          "refId": "A"
-        }
-      ],
-      "title": "${container_name}",
-      "type": "logs"
+      "title": "",
+      "type": "text"
     }
   ],
   "preload": false,
@@ -72,51 +54,7 @@
     "docker"
   ],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "text": "Loki",
-          "value": "loki-source"
-        },
-        "description": "",
-        "label": "Datasource",
-        "name": "datasource",
-        "options": [],
-        "query": "loki",
-        "refresh": 1,
-        "regex": "",
-        "type": "datasource"
-      },
-      {
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Loki",
-        "includeAll": true,
-        "label": "Containers",
-        "multi": true,
-        "name": "container_name",
-        "options": [],
-        "query": "label_values(container_name)",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "label": "Search",
-        "name": "search_query",
-        "type": "textbox",
-        "hide": 0,
-        "refresh": 1,
-        "options": [],
-        "query": "",
-        "regex": ""
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-24h",
@@ -125,7 +63,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Logs",
-  "version": 76,
   "uid": "logs-dashboard",
+  "version": 7,
   "weekStart": ""
 }

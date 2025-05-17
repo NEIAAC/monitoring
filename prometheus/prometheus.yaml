@@ -16,5 +16,5 @@ scrape_configs:
     static_configs:
       - targets: ["uptime:3001"]
     basic_auth:
-      username: accepts_any_username
+      username: unused
       password: replace_with_uptime_kuma_api_key
