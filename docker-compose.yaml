@@ -20,7 +20,7 @@ services:
       retries: 3
       start_period: 5s
 
-  uptime:
+  uptime-kuma:
     image: louislam/uptime-kuma:1.23.16
     pull_policy: if_not_present
     container_name: infra-uptime
