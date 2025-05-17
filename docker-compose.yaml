@@ -63,8 +63,6 @@ services:
     depends_on:
       node-exporter:
         condition: service_healthy
-      uptime:
-        condition: service_healthy
     volumes:
       - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
@@ -82,8 +80,6 @@ services:
     restart: unless-stopped
     env_file: .env
     depends_on:
-      loki:
-        condition: service_healthy
       prometheus:
         condition: service_healthy
     ports:
