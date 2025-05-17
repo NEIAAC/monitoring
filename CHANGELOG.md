@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/NEIAAC/infra/compare/v1.0.1...v1.1.0) (2025-05-17)
+
+
+### Features
+
+* add sentry and uptime services ([d2c703d](https://github.com/NEIAAC/infra/commit/d2c703d7591c550ebaad1ae3612c2320c64eadf4))
+* replace loki with portainer for UI management and logs ([b1de7e8](https://github.com/NEIAAC/infra/commit/b1de7e8ee589cee5db500ead8f1feff655efc528))
+* simplify the stack ([01c40cd](https://github.com/NEIAAC/infra/commit/01c40cd25e85466c9db9067eabf6cabfcbf27fd6))
+
+
+### Bug Fixes
+
+* add proxy config to bugsink ([46b3ef5](https://github.com/NEIAAC/infra/commit/46b3ef563fa8b2852aa7c196b86dfbdd64dcd68b))
+* remove loki dependency ([9564d7b](https://github.com/NEIAAC/infra/commit/9564d7b9e78dada6a2d2c02d51523c02a3e53e9a))
+* update config ([6cbb119](https://github.com/NEIAAC/infra/commit/6cbb119d503aec6e48a255b6711b82578c01c0df))
+* update portainer port ([920ac7a](https://github.com/NEIAAC/infra/commit/920ac7aba717f8b20dc19f82227b33758325242c))
+* update service names ([83f93f4](https://github.com/NEIAAC/infra/commit/83f93f4eedc2f1677969d240c43b891519db112d))
+
 ## [1.0.1](https://github.com/NEIAAC/monitoring/compare/v1.0.0...v1.0.1) (2024-11-27)
 
 
