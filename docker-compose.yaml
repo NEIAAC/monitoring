@@ -14,7 +14,7 @@ services:
       - database:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
-      interval: 1s
+      interval: 30s
       timeout: 20s
       retries: 30
 
@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-     - ./uptime:/app/data
+     - uptime:/app/data
     ports:
      - ${UPTIME_PORT}:3001
     healthcheck:
@@ -105,7 +105,7 @@ services:
       database:
         condition: service_healthy
     ports:
-      - ${BUGSINK_PORT}:8000
+      - ${BUGSINK_PORT}:${BUGSINK_PORT}
     environment:
       BEHIND_HTTPS_PROXY: True
       SECRET_KEY: ${BUGSINK_SECRET_KEY}
@@ -114,7 +114,7 @@ services:
       DATABASE_URL: mysql://root:${DATABASE_PASSWORD}@database:3306/main
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:8000"]
-      interval: 5s
+      interval: 30s
       timeout: 20s
       retries: 10
 
@@ -128,6 +128,11 @@ services:
     volumes:
       - portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:9000"]
+      interval: 30s
+      timeout: 20s
+      retries: 10
 
 volumes:
   database:
