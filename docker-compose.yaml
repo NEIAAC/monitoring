@@ -129,6 +129,7 @@ services:
     ports:
       - "${BUGSINK_PORT}:8000"
     environment:
+      BEHIND_HTTPS_PROXY: True
       SECRET_KEY: ${BUGSINK_SECRET_KEY}
       CREATE_SUPERUSER: ${BUGSINK_SUPERUSER}
       PORT: ${BUGSINK_PORT}
