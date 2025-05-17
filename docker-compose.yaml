@@ -93,14 +93,14 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - ${BUGSINK_PORT}:${BUGSINK_PORT}
+      - ${BUGSINK_PORT}:8000
     environment:
       BEHIND_HTTPS_PROXY: True
       SINGLE_TEAM: True
+      PORT: 8000
       USER_REGISTRATION: CB_ADMINS
       SECRET_KEY: ${BUGSINK_SECRET_KEY}
       CREATE_SUPERUSER: ${BUGSINK_SUPERUSER}
-      PORT: ${BUGSINK_PORT}
       EMAIL_HOST: ${BUGSINK_SMTP_HOST}
       EMAIL_HOST_USER: ${BUGSINK_SMTP_USER}
       EMAIL_HOST_PASSWORD: ${BUGSINK_SMTP_PASSWORD}
