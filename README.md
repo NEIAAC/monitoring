@@ -15,7 +15,7 @@ We try to maintain the simplity of the configuration as much as possible seeing 
 
 **Grafana** provides a web interface for visualizing the data from **Prometheus** (which in turn gets it from _node-exporter_). It also provides an alert system based on user rules that can act through SMTP, Webhooks, etc. This configurations comes with a **provisioned dashboard** for system resources, directly configured to display the information from _node-exporter_. There is also a ~~**provisioned alert workflow**~~ (removed because it was broken, needs to be reimplemented) that sends an email through SMTP when the CPU, RAM or disk usage reach certain thresholds.
 
-**Bugsink** is a lightweight sentry alternative, it is compatible with the Sentry SDKs and can be used to track errors sent by _sentry-ready_ applications. It provides a web interface for viewing the errors and their stack traces, as well as a notification system that can send alerts through email, Slack, etc.
+**Bugsink** is a lightweight **Sentry** alternative, it is compatible with the _Sentry SDKs_ and can be used to track errors sent by _sentry-ready_ applications. It provides a web interface for viewing the errors and their stack traces, as well as a notification system that can send alerts through email, Slack, etc.
 
 **Portainer** is a web interface for managing Docker containers. It provides a simple way to view the running containers, their logs, and their resource usage. It also provides a way to quickly manage the containers, such as starting and stopping them.
 
