@@ -22,7 +22,7 @@ services:
   node-exporter:
     image: prom/node-exporter:v1.8.2
     pull_policy: if_not_present
-    container_name: monitoring-node-exporter
+    container_name: monitoring-exporter
     restart: unless-stopped
     env_file: .env
     command:
@@ -112,7 +112,7 @@ services:
     volumes:
       - database-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "exit | mysql -h localhost -P 3306 -u root -p $$MYSQL_ROOT_PASSWORD" ]
+      test: ["CMD", "mysql --user=root --password=${DATABASE_PASSWORD} --execute='SHOW DATABASES'"]
       interval: 1s
       timeout: 20s
       retries: 30
