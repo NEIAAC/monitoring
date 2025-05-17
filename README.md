@@ -37,14 +37,14 @@ We try to maintain the simplity of the configuration as much as possible seeing 
   nano /etc/docker/daemon.json
   ```
 
-  - Add the following content, replacing the `port` number with the one you set for **Loki** in the `.env` file:
+  - Add the following content, replacing `(port)` with the number you set for **Loki** in the `.env` file:
 
     ```json
     {
         "debug" : true,
         "log-driver": "loki",
         "log-opts": {
-            "loki-url": "http://localhost:port/loki/api/v1/push",
+            "loki-url": "http://localhost:(port)/loki/api/v1/push",
             "loki-batch-size": "400",
             "loki-retries": "3",
             "loki-max-backoff": "800ms",
