@@ -17,6 +17,7 @@ services:
       interval: 1s
       timeout: 20s
       retries: 30
+
   node-exporter:
     image: prom/node-exporter:v1.8.2
     pull_policy: if_not_present
