@@ -124,7 +124,7 @@ services:
     container_name: monitoring-portainer
     restart: unless-stopped
     ports:
-      - ${PORTAINER_PORT}:9443
+      - ${PORTAINER_PORT}:9000
     volumes:
       - portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
