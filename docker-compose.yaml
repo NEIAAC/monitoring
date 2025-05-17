@@ -112,7 +112,7 @@ services:
     volumes:
       - database-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysql --user=root --password=${DATABASE_PASSWORD} --execute='SHOW DATABASES'"]
+      test: ["CMD", "mysqladmin", "ping"]
       interval: 1s
       timeout: 20s
       retries: 30
