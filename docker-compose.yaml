@@ -1,17 +1,17 @@
-name: monitoring
+name: infra
 
 services:
   database:
     image: mysql:9.3.0
     pull_policy: if_not_present
-    container_name: monitoring-database
+    container_name: infra-db
     restart: unless-stopped
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: main
     volumes:
-      - database-data:/var/lib/mysql
+      - database:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
       interval: 1s
@@ -21,7 +21,7 @@ services:
   node-exporter:
     image: prom/node-exporter:v1.8.2
     pull_policy: if_not_present
-    container_name: monitoring-exporter
+    container_name: infra-exporter
     restart: unless-stopped
     env_file: .env
     command:
@@ -40,11 +40,11 @@ services:
   uptime:
     image: louislam/uptime-kuma:1.23.16
     pull_policy: if_not_present
-    container_name: monitoring-uptime
+    container_name: infra-uptime
     restart: unless-stopped
     env_file: .env
     volumes:
-     - ./uptime-data:/app/data
+     - ./uptime:/app/data
     ports:
      - ${UPTIME_PORT}:3001
     healthcheck:
@@ -57,7 +57,7 @@ services:
   prometheus:
     image: prom/prometheus:v3.0.0
     pull_policy: if_not_present
-    container_name: monitoring-prometheus
+    container_name: infra-prometheus
     restart: unless-stopped
     env_file: .env
     depends_on:
@@ -65,7 +65,7 @@ services:
         condition: service_healthy
     volumes:
       - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus
+      - prometheus:/prometheus
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:9090/-/ready"]
       interval: 30s
@@ -76,7 +76,7 @@ services:
   grafana:
     image: grafana/grafana-oss:11.3.1
     pull_policy: if_not_present
-    container_name: monitoring-grafana
+    container_name: infra-grafana
     restart: unless-stopped
     env_file: .env
     depends_on:
@@ -87,7 +87,7 @@ services:
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning/
       - ./grafana/dashboards:/var/lib/grafana/dashboards
-      - grafana-data:/var/lib/grafana
+      - grafana:/var/lib/grafana
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:3000/api/health"]
       interval: 30s
@@ -98,7 +98,7 @@ services:
   bugsink:
     image: bugsink/bugsink:1.5.4
     pull_policy: if_not_present
-    container_name: monitoring-bugsink
+    container_name: infra-bugsink
     restart: unless-stopped
     env_file: .env
     depends_on:
@@ -121,17 +121,17 @@ services:
   portainer:
     image: portainer/portainer-ce:2.30.0
     pull_policy: if_not_present
-    container_name: monitoring-portainer
+    container_name: infra-portainer
     restart: unless-stopped
     ports:
       - ${PORTAINER_PORT}:9000
     volumes:
-      - portainer-data:/data
+      - portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
-  database-data:
-  uptime-data:
-  prometheus-data:
-  grafana-data:
-  portainer-data:
+  database:
+  uptime:
+  prometheus:
+  grafana:
+  portainer:
