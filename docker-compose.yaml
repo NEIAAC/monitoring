@@ -1,23 +1,6 @@
 name: infra
 
 services:
-  database:
-    image: mysql:9.3.0
-    pull_policy: if_not_present
-    container_name: infra-db
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DATABASE: main
-    volumes:
-      - database:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping"]
-      interval: 30s
-      timeout: 20s
-      retries: 30
-
   node-exporter:
     image: prom/node-exporter:v1.8.2
     pull_policy: if_not_present
@@ -84,6 +67,14 @@ services:
         condition: service_healthy
     ports:
       - ${GRAFANA_PORT}:3000
+    environment:
+      GF_SMTP_ENABLED: ${GRAFANA_SMTP_ENABLED}
+      GF_SMTP_HOST: ${GRAFANA_SMTP_HOST}
+      GF_SMTP_STARTTLS_POLICY: ${GRAFANA_SMTP_TLS}
+      GF_SMTP_USER: ${GRAFANA_SMTP_USER}
+      GF_SMTP_PASSWORD: ${GRAFANA_SMTP_PASSWORD}
+      GF_SMTP_FROM_ADDRESS: ${GRAFANA_SMTP_FROM_ADDRESS}
+      GF_SMTP_FROM_NAME: ${GRAFANA_SMTP_FROM_NAME}
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning/
       - ./grafana/dashboards:/var/lib/grafana/dashboards
@@ -108,12 +99,21 @@ services:
       - ${BUGSINK_PORT}:${BUGSINK_PORT}
     environment:
       BEHIND_HTTPS_PROXY: True
+      SINGLE_TEAM: True
+      USER_REGISTRATION: CB_ADMINS
       SECRET_KEY: ${BUGSINK_SECRET_KEY}
       CREATE_SUPERUSER: ${BUGSINK_SUPERUSER}
       PORT: ${BUGSINK_PORT}
-      DATABASE_URL: mysql://root:${DATABASE_PASSWORD}@database:3306/main
+      EMAIL_HOST: ${BUGSINK_SMTP_HOST}
+      EMAIL_HOST_USER: ${BUGSINK_SMTP_USER}
+      EMAIL_HOST_PASSWORD: ${BUGSINK_SMTP_PASSWORD}
+      EMAIL_PORT: ${BUGSINK_SMTP_PORT}
+      EMAIL_USE_TLS: ${BUGSINK_SMTP_TLS}
+      DEFAULT_FROM_EMAIL: ${BUGSINK_SMTP_FROM}
+    volumes:
+      - bugsink:/data
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:8000"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
       interval: 30s
       timeout: 20s
       retries: 10
@@ -135,8 +135,8 @@ services:
       retries: 10
 
 volumes:
-  database:
   uptime:
   prometheus:
   grafana:
   portainer:
+  bugsink:
