@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.1](https://github.com/NEIAAC/infra/compare/v1.1.0...v1.1.1) (2025-05-17)
+
+
+### Bug Fixes
+
+* add bugsink smtp ([fa92f3e](https://github.com/NEIAAC/infra/commit/fa92f3e5179d856c9e1ece641b6ff2d38be85893))
+* remove unused dependency condition ([171f50f](https://github.com/NEIAAC/infra/commit/171f50f56eb3fdfb3991370fa4dec0785183a988))
+* remove unused mysql config ([bce3bb2](https://github.com/NEIAAC/infra/commit/bce3bb21a407a007b4d136d427f8cc36e902d8ae))
+* update bugsink healthcheck ([5d9053d](https://github.com/NEIAAC/infra/commit/5d9053dfb37964734cc5c09cf3d10481a470a406))
+* update bugsink port mapping ([e625387](https://github.com/NEIAAC/infra/commit/e6253877b2bd7cec8d8c538284ed44e3599239fe))
+* update grafana env var name ([eed3210](https://github.com/NEIAAC/infra/commit/eed32109d41f75c1ae75a14816fd48c135955d39))
+
 ## [1.1.0](https://github.com/NEIAAC/infra/compare/v1.0.1...v1.1.0) (2025-05-17)
 
 
