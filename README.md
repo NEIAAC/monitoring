@@ -1,7 +1,6 @@
 # Like CCTV, but for the server 📸🚨
 
 ![screenshot](./.github/screenshots/first.png)
-![screenshot](./.github/screenshots/second.png)
 
 This repository contains a base setup for monitoring resources, application health and uptime of a server. It includes web interfaces for performing common maintenance tasks, like managing running containers, viewing logs, etc.
 
@@ -9,13 +8,13 @@ Note that the current configuration is meant to be used on standalone _Linux_ se
 
 We try to maintain the simplity of the configuration as much as possible seeing as we don't have any need for orchestration level workflows and monitoring.
 
-**Uptime-Kuma** is a service that provides a web interface for monitoring the status of your services. It can be used to check if your services are up and running through a variety of request options, and it can also send alerts if they go down.
+**Uptime-Kuma** is a service that provides a web interface for monitoring the status of your services. It can be used to check if your services are up and running through a variety of request options. On our infrastructure, we generally set it up to report down/up events to a channel in our [Mattermost instance](https://github.com/NEIAAC/chat).
 
 **Prometheus** is a time series database, that in our case is used for monitoring system resources. It needs a data feed for the system resources, which is provided by the **node-exporter** service. Prometheus can also be used to collect metrics for individual applications using OpenTelemetry (OTL), among others, but we do not currently use this feature in our setup.
 
 **Grafana** provides a web interface for visualizing the data from **Prometheus** (which in turn gets it from _node-exporter_). It also provides an alert system based on user rules that can act through SMTP, Webhooks, etc. This configurations comes with a **provisioned dashboard** for system resources, directly configured to display the information from _node-exporter_. There is also a ~~**provisioned alert workflow**~~ (removed because it was broken, needs to be reimplemented) that sends an email through SMTP when the CPU, RAM or disk usage reach certain thresholds.
 
-**Bugsink** is a lightweight **Sentry** alternative, it is compatible with the _Sentry SDKs_ and can be used to track errors sent by _sentry-ready_ applications. It provides a web interface for viewing the errors and their stack traces, as well as a notification system that can send alerts through email, Slack, etc.
+**Bugsink** is a lightweight **Sentry** alternative, it is compatible with the _Sentry SDKs_ and can be used to track errors sent by _sentry-ready_ applications. It provides a web interface for viewing the errors and their stack traces, as well as a notification system that can send alerts through SMTP, if configured.
 
 **Portainer** is a web interface for managing Docker containers. It provides a simple way to view the running containers, their logs, and their resource usage. It also provides a way to quickly manage the containers, such as starting and stopping them.
 
