@@ -8,7 +8,7 @@ Note that the current configuration is meant to be used on standalone _Linux_ se
 
 We try to maintain the simplity of the configuration as much as possible seeing as we don't have any need for orchestration level workflows and monitoring.
 
-**Uptime-Kuma** is a service that provides a web interface for monitoring the status of your services. It can be used to check if your services are up and running through a variety of request options. On our infrastructure, we generally set it up to report down/up events to a channel in our [Mattermost instance](https://github.com/NEIAAC/chat).
+**Uptime-Kuma** is a service that provides a web interface for monitoring the status of your services. It can be used to check if your services are up and running through a variety of request options. On our infrastructure, we generally set it up to report down/up events to a channel in our [Mattermost instance](https://github.com/NEIAAC/chat), using it's notification/webhook system.
 
 **Prometheus** is a time series database, that in our case is used for monitoring system resources. It needs a data feed for the system resources, which is provided by the **node-exporter** service. Prometheus can also be used to collect metrics for individual applications using OpenTelemetry (OTL), among others, but we do not currently use this feature in our setup.
 
