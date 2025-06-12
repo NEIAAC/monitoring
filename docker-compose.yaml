@@ -88,7 +88,7 @@ services:
       start_period: 5s
 
   bugsink:
-    image: bugsink/bugsink:1.5.4
+    image: bugsink/bugsink:1.6.1
     pull_policy: if_not_present
     container_name: infra-bugsink
     restart: unless-stopped
